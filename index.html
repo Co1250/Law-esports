@@ -236,24 +236,35 @@
 
     function populateRoster(gridId, players) {
         const grid = document.getElementById(gridId);
-        if(!grid) return;
         players.forEach(p => {
-            grid.innerHTML += `<div class="glass-box p-4 rounded-lg text-center"><img src="${p.img}" class="w-16 h-16 rounded-full mx-auto mb-2 object-cover border border-white/10" onerror="this.src='IMG_1343.jpeg'"><p class="text-[9px] font-black uppercase italic">${p.name}</p></div>`;
+            grid.innerHTML += `
+                <div class="glass-box p-4 rounded-lg text-center">
+                    <img src="${p.img}" class="w-16 h-16 rounded-full mx-auto mb-2 object-cover border border-white/10" onerror="this.src='IMG_1343.jpeg'">
+                    <p class="text-[9px] font-black uppercase italic">${p.name}</p>
+                </div>`;
         });
     }
 
     function populateStaff(gridId, staff) {
         const grid = document.getElementById(gridId);
-        if(!grid) return;
         staff.forEach(s => {
-            grid.innerHTML += `<div class="staff-card glass-box p-4 rounded-xl border-l-2 border-yellow-500/50 flex items-center space-x-4"><img src="${s.img}" class="w-12 h-12 rounded-lg object-cover" onerror="this.src='IMG_1343.jpeg'"><div><h4 class="text-sm font-black uppercase italic leading-tight">${s.name}</h4><p class="text-yellow-500 text-[8px] font-bold uppercase tracking-widest">${s.role}</p></div></div>`;
+            grid.innerHTML += `
+                <div class="staff-card glass-box p-4 rounded-xl border-l-2 border-yellow-500/50 flex items-center space-x-4">
+                    <img src="${s.img}" class="w-12 h-12 rounded-lg object-cover" onerror="this.src='IMG_1343.jpeg'">
+                    <div>
+                        <h4 class="text-sm font-black uppercase italic leading-tight">${s.name}</h4>
+                        <p class="text-yellow-500 text-[8px] font-bold uppercase tracking-widest">${s.role}</p>
+                    </div>
+                </div>`;
         });
     }
 
+    // Initialize
     populateRoster('creative-pro-grid', creativePro);
     populateRoster('main-creative-grid', mainCreative);
     populateRoster('division-one-grid', divisionOne);
     populateRoster('academy-grid', academy);
+
     populateStaff('staff-founder', staffFounder);
     populateStaff('staff-executive', staffExecutive);
     populateStaff('staff-ops', staffOps);
