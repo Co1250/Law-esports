@@ -153,13 +153,56 @@
 
     const creativePro = [{ name: "Slayer", img: "slayer.webp" }];
     const mainCreative = [{ name: "Cyclip!", img: "cyclip.webp" }];
-    const divisionOne = [{ name: "Moshki", img: "mohski.webp" }, { name: "Omar", img: "omar.webp" }, { name: "Vexro", img: "vexro.webp" }, { name: "Vision", img: "vision.webp" }];
-    const academy = [{ name: "Cyber", img: "cyber.webp" }, { name: "Dextor", img: "dextor.webp" }, { name: "Deyy", img: "deyy.webp" }, { name: "EpikSpyy", img: "epik.webp" }, { name: "Etashk", img: "etashk.webp" }, { name: "Firedemon", img: "firedemon.webp" }, { name: "Frenzy", img: "frenzy.webp" }, { name: "Frst Zone", img: "frst.webp" }, { name: "Nix", img: "nix.webp" }, { name: "Ornery", img: "ornery.webp" }, { name: "Zilla", img: "zilla.webp" }, { name: "Ghost", img: "ghost.webp" }, { name: "Meem", img: "meem.webp" }, { name: "Vanish", img: "vanish.webp" }, { name: "Voltrux", img: "voltrux.webp" }];
+    const divisionOne = [
+        { name: "Moshki", img: "mohski.webp" }, 
+        { name: "Omar", img: "omar.webp" },
+        { name: "Vexro", img: "vexro.webp" }, 
+        { name: "Vision", img: "vision.webp" }
+    ];
+    const academy = [
+        { name: "Cyber", img: "cyber.webp" },
+        { name: "Dextor", img: "dextor.webp" }, 
+        { name: "Deyy", img: "deyy.webp" },
+        { name: "EpikSpyy", img: "epik.webp" },
+        { name: "Etashk", img: "etashk.webp" }, 
+        { name: "Firedemon", img: "firedemon.webp" }, 
+        { name: "Frenzy", img: "frenzy.webp" },
+        { name: "Frst Zone", img: "frst.webp" }, 
+        { name: "Nix", img: "nix.webp" },
+        { name: "Ornery", img: "ornery.webp" },
+     { name: "Zilla", img: "zilla.webp" }, 
+        { name: "Ghost", img: "ghost.webp" },
+        { name: "Meem", img: "meem.webp" }, 
+        { name: "Vanish", img: "vanish.webp" },
+        { name: "Voltrux", img: "voltrux.webp" }
+    ];
 
     const staffFounder = [{ name: "Energe", role: "Founder", img: "energe.webp" }];
-    const staffExecutive = [{ name: "Draxy", role: "Co-Founder", img: "draxy.webp" }, { name: "Taseen", role: "Co-Founder", img: "taseen.webp" }, { name: "Hunter", role: "Co-Founder", img: "hunter.webp" }, { name: "C1okie", role: "Co-Founder", img: "c1okie.webp" }, { name: "Snappz", role: "Co-Founder", img: "snappz.webp" }, { name: "Fightwar", role: "Co-Founder", img: "fightwar.webp" }, { name: "Cheezy", role: "Co-Founder", img: "chezy.webp" }];
-    const staffOps = [{ name: "Snappz", role: "Chief of Executives", img: "snappz.webp" }, { name: "7y", role: "Management", img: "7y.webp" }, { name: "Dxmolsher", role:"Chief Of Operations", img: "dxm.webp"}, { name: "Blicky", role:"Over-seer", img: "blicky.webp" }, { name: "Moon", role:"Round-Table", img: "moon.webp" }, { name: "Kxalid", role: "Round-Table", img: "khalid.webp" }, { name: "Prix", role: "Round-Table", img: "prix.webp" }, { name: "Cyclip", role: "Chief", img: "cyclip.webp" } , { name: "Vexro", role: "Chief Admin", img: "vexro.webp" }];
-    const staffSupport = [{ name: "Snappz", role: "Chief Of Executive", img: "snappz.webp" }, { name: "Stofn", role: "Moderator", img: "stofn.webp" }, { name: "Ryan", role: "Moderator", img: "ryan.webp" }];
+    const staffExecutive = [
+        { name: "Draxy", role: "Co-Founder", img: "draxy.webp" }, 
+        { name: "Taseen", role: "Co-Founder", img: "taseen.webp" }, 
+        { name: "Hunter", role: "Co-Founder", img: "hunter.webp" },
+        { name: "C1okie", role: "Co-Founder", img: "c1okie.webp" },
+        { name: "Snappz", role: "Co-Founder", img: "snappz.webp" },
+        { name: "Fightwar", role: "Co-Founder", img: "fightwar.webp" }, 
+        { name: "Cheezy", role: "Co-Founder", img: "chezy.webp" }
+        ];
+    const staffOps = [
+        { name: "Snappz", role: "Chief of Executives", img: "snappz.webp" },
+        { name: "7y", role: "Management", img: "7y.webp" },
+        { name: "Dxmolsher", role:"Chief Of Operations", img: "dxm.webp"},
+        { name: "Blicky", role:"Over-seer", img: "blicky.webp" },
+        { name: "Moon", role:"Round-Table", img: "moon.webp" },
+        { name: "Kxalid", role: "Round-Table", img: "khalid.webp" }, 
+        { name: "Prix", role: "Round-Table", img: "prix.webp" }, 
+        { name: "Cyclip", role: "Chief", img: "cyclip.webp" } ,
+        { name: "Vexro", role: "Chief Admin", img: "vexro.webp" }
+    ];
+    const staffSupport = [
+        { name: "Exort", role: "Moderator", img: "exort.webp" }, 
+        { name: "Stofn", role: "Moderator", img: "stofn.webp" }, 
+        { name: "Ryan", role: "Moderator", img: "ryan.webp" }
+    ];
 
     function populateRoster(gridId, players) {
         const grid = document.getElementById(gridId);
