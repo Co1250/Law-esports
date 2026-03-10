@@ -22,13 +22,13 @@
 
         /* BACKGROUND SYSTEM */
         .hero-bg {
-            position: fixed; /* Fixed so it stays behind content */
+            position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
             background: linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,1)), url('IMG_1344.jpeg');
             background-size: cover;
             background-position: center;
             z-index: -1;
-            pointer-events: none; /* Crucial: Clicks pass THROUGH the background */
+            pointer-events: none;
         }
 
         /* CLICKABLE ELEMENTS */
@@ -46,11 +46,21 @@
             box-shadow: 0 10px 30px -10px rgba(234, 179, 8, 0.3);
         }
 
-        nav { pointer-events: none; } /* Nav container doesn't block clicks */
-        nav div, nav button { pointer-events: auto; } /* Nav buttons DO click */
+        nav { pointer-events: none; }
+        nav div, nav button { pointer-events: auto; }
 
         .back-btn:hover { background: white; color: black; transform: translateX(-5px); }
         .staff-card:hover { border-color: #eab308; background: rgba(255, 255, 255, 0.08); transform: translateY(-3px); }
+
+        /* Added category label styling */
+        .category-label {
+            font-size: 10px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            margin-bottom: 1rem;
+            display: block;
+        }
     </style>
 </head>
 <body>
@@ -119,9 +129,17 @@
         <div class="max-w-7xl mx-auto">
             <button onclick="switchPage('home')" class="back-btn mb-8 border border-white/20 px-6 py-2 text-[10px] font-black uppercase italic transition-all">← Back to Home</button>
             <h2 class="text-4xl font-black italic mb-12 uppercase border-l-4 border-cyan-500 pl-4">Team <span class="text-cyan-400">Rosters</span></h2>
+            
+            <span class="category-label text-cyan-500">Creative Pro</span>
             <div id="creative-pro-grid" class="grid grid-cols-2 md:grid-cols-6 gap-4 mb-12"></div>
+            
+            <span class="category-label text-cyan-500">Main Creative</span>
             <div id="main-creative-grid" class="grid grid-cols-2 md:grid-cols-6 gap-4 mb-12"></div>
+            
+            <span class="category-label text-cyan-500">Division One</span>
             <div id="division-one-grid" class="grid grid-cols-2 md:grid-cols-6 gap-4 mb-12"></div>
+            
+            <span class="category-label text-cyan-500">Academy</span>
             <div id="academy-grid" class="grid grid-cols-2 md:grid-cols-6 gap-4"></div>
         </div>
     </section>
@@ -130,11 +148,27 @@
         <div class="max-w-7xl mx-auto">
             <button onclick="switchPage('home')" class="back-btn mb-8 border border-white/20 px-6 py-2 text-[10px] font-black uppercase italic transition-all">← Back to Home</button>
             <h2 class="text-4xl font-black italic mb-12 uppercase border-l-4 border-yellow-500 pl-4">Staff <span class="text-yellow-500">Team</span></h2>
+            
             <div class="space-y-12">
-                <div id="staff-founder" class="grid grid-cols-1 md:grid-cols-4 gap-4"></div>
-                <div id="staff-executive" class="grid grid-cols-1 md:grid-cols-4 gap-4"></div>
-                <div id="staff-ops" class="grid grid-cols-1 md:grid-cols-4 gap-4"></div>
-                <div id="staff-support" class="grid grid-cols-1 md:grid-cols-4 gap-4"></div>
+                <div>
+                    <span class="category-label text-yellow-500">Founding Leadership</span>
+                    <div id="staff-founder" class="grid grid-cols-1 md:grid-cols-4 gap-4"></div>
+                </div>
+
+                <div>
+                    <span class="category-label text-yellow-500">Executive Board</span>
+                    <div id="staff-executive" class="grid grid-cols-1 md:grid-cols-4 gap-4"></div>
+                </div>
+
+                <div>
+                    <span class="category-label text-yellow-500">Operations</span>
+                    <div id="staff-ops" class="grid grid-cols-1 md:grid-cols-4 gap-4"></div>
+                </div>
+
+                <div>
+                    <span class="category-label text-yellow-500">Support Staff</span>
+                    <div id="staff-support" class="grid grid-cols-1 md:grid-cols-4 gap-4"></div>
+                </div>
             </div>
         </div>
     </section>
@@ -170,7 +204,7 @@
         { name: "Frst Zone", img: "frst.webp" }, 
         { name: "Nix", img: "nix.webp" },
         { name: "Ornery", img: "ornery.webp" },
-     { name: "Zilla", img: "zilla.webp" }, 
+        { name: "Zilla", img: "zilla.webp" }, 
         { name: "Ghost", img: "ghost.webp" },
         { name: "Meem", img: "meem.webp" }, 
         { name: "Vanish", img: "vanish.webp" },
