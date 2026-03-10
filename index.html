@@ -31,6 +31,23 @@
             pointer-events: none;
         }
 
+        /* CATEGORY LABELS (As per your image) */
+        .category-label {
+            font-size: 14px;
+            font-weight: 900;
+            text-transform: uppercase;
+            font-style: italic;
+            letter-spacing: 0.25em;
+            margin-bottom: 1.5rem;
+            display: block;
+            color: #fff;
+            /* Blue/Red Offset Effect */
+            text-shadow: 
+                -1.5px 0px 0px rgba(0, 100, 255, 0.6), 
+                 1.5px 0px 0px rgba(255, 0, 0, 0.4);
+            opacity: 0.9;
+        }
+
         /* CLICKABLE ELEMENTS */
         .social-card {
             position: relative;
@@ -51,16 +68,6 @@
 
         .back-btn:hover { background: white; color: black; transform: translateX(-5px); }
         .staff-card:hover { border-color: #eab308; background: rgba(255, 255, 255, 0.08); transform: translateY(-3px); }
-
-        /* Added category label styling */
-        .category-label {
-            font-size: 10px;
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: 0.3em;
-            margin-bottom: 1rem;
-            display: block;
-        }
     </style>
 </head>
 <body>
@@ -100,21 +107,18 @@
                     </div>
                     <span class="text-[10px] font-black uppercase italic text-yellow-500">Discord</span>
                 </a>
-
                 <a href="https://www.tiktok.com/@lawesportsofficial" target="_blank" class="social-card glass-box p-6 rounded-xl border border-white/10 flex flex-col items-center group">
                     <div class="mb-3 text-white group-hover:scale-110 transition-transform">
                         <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02c.08 1.53.63 3.09 1.75 4.17c1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97c-.57-.26-1.1-.59-1.62-.93c-.01 2.92.01 5.84-.02 8.75c-.03 1.4-.54 2.79-1.35 3.94c-1.31 1.92-3.58 3.17-5.91 3.21c-1.43.08-2.86-.31-4.08-1.03c-2.02-1.19-3.44-3.37-3.65-5.71c-.02-.5-.03-1-.01-1.49c.18-1.9 1.12-3.72 2.58-4.96c1.66-1.44 3.98-2.13 6.15-1.72v4.02a4.23 4.23 0 0 0-2.22.71c-.77.53-1.38 1.32-1.62 2.24c-.19.63-.25 1.28-.15 1.93c.12 1.13.78 2.15 1.7 2.8c1.02.7 2.32.74 3.39.31c.9-.34 1.61-1.1 1.96-2.01c.15-.38.21-.77.21-1.17z"/></svg>
                     </div>
                     <span class="text-[10px] font-black uppercase italic text-yellow-500">TikTok</span>
                 </a>
-
                 <a href="https://x.com/LAWOfficial0" target="_blank" class="social-card glass-box p-6 rounded-xl border border-white/10 flex flex-col items-center group">
                     <div class="mb-3 text-white group-hover:scale-110 transition-transform">
                         <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg>
                     </div>
                     <span class="text-[10px] font-black uppercase italic text-yellow-500">X / Twitter</span>
                 </a>
-
                 <a href="https://www.youtube.com/@LAWEsportsOfficial" target="_blank" class="social-card glass-box p-6 rounded-xl border border-white/10 flex flex-col items-center group">
                     <div class="mb-3 text-red-600 group-hover:scale-110 transition-transform">
                         <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
@@ -130,16 +134,16 @@
             <button onclick="switchPage('home')" class="back-btn mb-8 border border-white/20 px-6 py-2 text-[10px] font-black uppercase italic transition-all">← Back to Home</button>
             <h2 class="text-4xl font-black italic mb-12 uppercase border-l-4 border-cyan-500 pl-4">Team <span class="text-cyan-400">Rosters</span></h2>
             
-            <span class="category-label text-cyan-500">Creative Pro</span>
+            <span class="category-label">Creative Pro</span>
             <div id="creative-pro-grid" class="grid grid-cols-2 md:grid-cols-6 gap-4 mb-12"></div>
             
-            <span class="category-label text-cyan-500">Main Creative</span>
+            <span class="category-label">Main Creative</span>
             <div id="main-creative-grid" class="grid grid-cols-2 md:grid-cols-6 gap-4 mb-12"></div>
             
-            <span class="category-label text-cyan-500">Division One</span>
+            <span class="category-label">Division One</span>
             <div id="division-one-grid" class="grid grid-cols-2 md:grid-cols-6 gap-4 mb-12"></div>
             
-            <span class="category-label text-cyan-500">Academy</span>
+            <span class="category-label">Academy</span>
             <div id="academy-grid" class="grid grid-cols-2 md:grid-cols-6 gap-4"></div>
         </div>
     </section>
@@ -149,24 +153,24 @@
             <button onclick="switchPage('home')" class="back-btn mb-8 border border-white/20 px-6 py-2 text-[10px] font-black uppercase italic transition-all">← Back to Home</button>
             <h2 class="text-4xl font-black italic mb-12 uppercase border-l-4 border-yellow-500 pl-4">Staff <span class="text-yellow-500">Team</span></h2>
             
-            <div class="space-y-12">
+            <div class="space-y-16">
                 <div>
-                    <span class="category-label text-yellow-500">Founding Leadership</span>
+                    <span class="category-label">Leadership</span>
                     <div id="staff-founder" class="grid grid-cols-1 md:grid-cols-4 gap-4"></div>
                 </div>
 
                 <div>
-                    <span class="category-label text-yellow-500">Executive Board</span>
+                    <span class="category-label">Executive</span>
                     <div id="staff-executive" class="grid grid-cols-1 md:grid-cols-4 gap-4"></div>
                 </div>
 
                 <div>
-                    <span class="category-label text-yellow-500">Operations</span>
+                    <span class="category-label">Management & Operations</span>
                     <div id="staff-ops" class="grid grid-cols-1 md:grid-cols-4 gap-4"></div>
                 </div>
 
                 <div>
-                    <span class="category-label text-yellow-500">Support Staff</span>
+                    <span class="category-label">Support Staff</span>
                     <div id="staff-support" class="grid grid-cols-1 md:grid-cols-4 gap-4"></div>
                 </div>
             </div>
@@ -194,20 +198,13 @@
         { name: "Vision", img: "vision.webp" }
     ];
     const academy = [
-        { name: "Cyber", img: "cyber.webp" },
-        { name: "Dextor", img: "dextor.webp" }, 
-        { name: "Deyy", img: "deyy.webp" },
-        { name: "EpikSpyy", img: "epik.webp" },
-        { name: "Etashk", img: "etashk.webp" }, 
-        { name: "Firedemon", img: "firedemon.webp" }, 
-        { name: "Frenzy", img: "frenzy.webp" },
-        { name: "Frst Zone", img: "frst.webp" }, 
-        { name: "Nix", img: "nix.webp" },
-        { name: "Ornery", img: "ornery.webp" },
-        { name: "Zilla", img: "zilla.webp" }, 
-        { name: "Ghost", img: "ghost.webp" },
-        { name: "Meem", img: "meem.webp" }, 
-        { name: "Vanish", img: "vanish.webp" },
+        { name: "Cyber", img: "cyber.webp" }, { name: "Dextor", img: "dextor.webp" }, 
+        { name: "Deyy", img: "deyy.webp" }, { name: "EpikSpyy", img: "epik.webp" },
+        { name: "Etashk", img: "etashk.webp" }, { name: "Firedemon", img: "firedemon.webp" }, 
+        { name: "Frenzy", img: "frenzy.webp" }, { name: "Frst Zone", img: "frst.webp" }, 
+        { name: "Nix", img: "nix.webp" }, { name: "Ornery", img: "ornery.webp" },
+        { name: "Zilla", img: "zilla.webp" }, { name: "Ghost", img: "ghost.webp" },
+        { name: "Meem", img: "meem.webp" }, { name: "Vanish", img: "vanish.webp" },
         { name: "Voltrux", img: "voltrux.webp" }
     ];
 
@@ -220,7 +217,7 @@
         { name: "Snappz", role: "Co-Founder", img: "snappz.webp" },
         { name: "Fightwar", role: "Co-Founder", img: "fightwar.webp" }, 
         { name: "Cheezy", role: "Co-Founder", img: "chezy.webp" }
-        ];
+    ];
     const staffOps = [
         { name: "Snappz", role: "Chief of Executives", img: "snappz.webp" },
         { name: "7y", role: "Management", img: "7y.webp" },
