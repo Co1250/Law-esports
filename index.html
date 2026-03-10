@@ -11,7 +11,8 @@
         .font-gaming { font-family: 'Inter', sans-serif; letter-spacing: -0.05em; }
         .glass-box { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.05); }
         
-        .content-view { display: none !important; min-height: 100vh; position: relative; z-index: 10; }
+        /* PAGE TRANSITIONS */
+        .content-view { display: none !important; min-height: 100vh; position: relative; }
         .content-view.active { display: block !important; animation: fadeIn 0.4s ease-out; }
         
         @keyframes fadeIn {
@@ -19,28 +20,44 @@
             to { opacity: 1; transform: scale(1); }
         }
 
+        /* BACKGROUND SYSTEM */
         .hero-bg {
-            background: linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,1)), url('IMG_1344.jpeg');
+            position: fixed; /* Fixed so it stays behind content */
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,1)), url('IMG_1344.jpeg');
             background-size: cover;
             background-position: center;
-            min-height: 100vh;
+            z-index: -1;
+            pointer-events: none; /* Crucial: Clicks pass THROUGH the background */
         }
 
-        button, a { cursor: pointer; transition: all 0.2s; position: relative; z-index: 20; }
-        .back-btn:hover { background: white; color: black; transform: translateX(-5px); }
-        .staff-card:hover, .social-card:hover { 
-            border-color: #eab308; 
-            background: rgba(255, 255, 255, 0.08); 
-            transform: translateY(-5px); 
+        /* CLICKABLE ELEMENTS */
+        .social-card {
+            position: relative;
+            z-index: 50;
+            pointer-events: auto !important;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
-        /* Ensures the background doesn't block clicks */
-        #main-content { position: relative; z-index: 1; }
+        .social-card:hover { 
+            border-color: #eab308; 
+            background: rgba(255, 255, 255, 0.1); 
+            transform: translateY(-5px); 
+            box-shadow: 0 10px 30px -10px rgba(234, 179, 8, 0.3);
+        }
+
+        nav { pointer-events: none; } /* Nav container doesn't block clicks */
+        nav div, nav button { pointer-events: auto; } /* Nav buttons DO click */
+
+        .back-btn:hover { background: white; color: black; transform: translateX(-5px); }
+        .staff-card:hover { border-color: #eab308; background: rgba(255, 255, 255, 0.08); transform: translateY(-3px); }
     </style>
 </head>
 <body>
 
-<nav class="fixed top-0 w-full z-[1000] px-8 py-6 flex justify-between items-center bg-black/95 border-b border-white/5">
+<div class="hero-bg"></div>
+
+<nav class="fixed top-0 w-full z-[1000] px-8 py-6 flex justify-between items-center bg-black/80 backdrop-blur-md border-b border-white/5">
     <div class="flex items-center space-x-2 cursor-pointer" onclick="switchPage('home')">
         <div class="font-gaming text-xl font-black tracking-tighter text-white uppercase italic leading-none">
             LAW <br> <span class="text-yellow-500">HQ</span>
@@ -52,31 +69,31 @@
     </div>
 </nav>
 
-<main id="main-content">
+<main id="main-content" class="relative z-10">
 
     <section id="home" class="content-view active">
-        <div class="hero-bg flex flex-col items-center justify-center text-center px-6 pt-20">
+        <div class="flex flex-col items-center justify-center text-center min-h-screen px-6 pt-20">
             <h1 class="font-gaming text-6xl md:text-8xl font-black text-white mb-2 tracking-tighter italic uppercase">
                 LAW <br> HQ
             </h1>
             <p class="text-cyan-400 font-bold tracking-[0.4em] text-[10px] uppercase mb-12">Established 2026 • Global Competitive Force</p>
             
-            <div class="flex flex-col md:flex-row gap-4 justify-center mb-16">
-                <button onclick="switchPage('rosters')" class="bg-cyan-500 text-black px-12 py-3 font-black uppercase text-[11px] skew-x-[-15deg] hover:bg-cyan-400 transition">Explore Roster</button>
-                <button onclick="switchPage('staff')" class="border border-white/30 text-white px-12 py-3 font-black uppercase text-[11px] skew-x-[-15deg] hover:bg-white/10 transition">Staff Team</button>
+            <div class="flex flex-col md:flex-row gap-4 justify-center mb-16 relative z-50">
+                <button onclick="switchPage('rosters')" class="bg-cyan-500 text-black px-12 py-3 font-black uppercase text-[11px] skew-x-[-15deg] hover:bg-cyan-400 transition pointer-events-auto">Explore Roster</button>
+                <button onclick="switchPage('staff')" class="border border-white/30 text-white px-12 py-3 font-black uppercase text-[11px] skew-x-[-15deg] hover:bg-white/10 transition pointer-events-auto">Staff Team</button>
             </div>
 
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl w-full px-4 relative z-[50]">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl w-full px-4 relative z-[100]">
                 <a href="https://discord.gg/jqbMhxhybJ" target="_blank" class="social-card glass-box p-6 rounded-xl border border-white/10 flex flex-col items-center group">
                     <div class="mb-3 text-yellow-500 group-hover:scale-110 transition-transform">
-                        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515a.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0a12.64 12.64 0 0 0-.617-1.25a.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057a19.9 19.9 0 0 0 5.993 3.03a.078.078 0 0 0 .084-.028a14.09 14.09 0 0 0 1.226-1.994a.076.076 0 0 0-.041-.106a13.107 13.107 0 0 1-1.872-.892a.077.077 0 0 1-.008-.128a10.2 10.2 0 0 0 .372-.292a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127a12.299 12.299 0 0 1-1.873.892a.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028a19.839 19.839 0 0 0 6.002-3.03a.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.06.06 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.955-2.419 2.157-2.419c1.21 0 2.176 1.086 2.157 2.419c0 1.334-.947 2.419-2.157 2.419zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.955-2.419 2.157-2.419c1.21 0 2.176 1.086 2.157 2.419c0 1.334-.946 2.419-2.157 2.419z"/></svg>
+                        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515a.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0a12.64 12.64 0 0 0-.617-1.25a.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057a19.9 19.9 0 0 0 5.993 3.03a.078.078 0 0 0 .084-.028a14.09 14.09 0 0 0 1.226-1.994a.076.076 0 0 0-.041-.106a13.107 13.107 0 0 1-1.872-.892a.077.077 0 0 1-.008-.128a10.2 10.2 0 0 0 .372-.292a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127a12.299 12.299 0 0 1-1.873.892a.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028a19.839 19.839 0 0 0 6.002-3.03a.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.06.06 0 0 0-.031-.03z"/></svg>
                     </div>
                     <span class="text-[10px] font-black uppercase italic text-yellow-500">Discord</span>
                 </a>
-                
+
                 <a href="https://www.tiktok.com/@lawesportsofficial" target="_blank" class="social-card glass-box p-6 rounded-xl border border-white/10 flex flex-col items-center group">
                     <div class="mb-3 text-white group-hover:scale-110 transition-transform">
-                        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02c.08 1.53.63 3.09 1.75 4.17c1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97c-.57-.26-1.1-.59-1.62-.93c-.01 2.92.01 5.84-.02 8.75c-.03 1.4-.54 2.79-1.35 3.94c-1.31 1.92-3.58 3.17-5.91 3.21c-1.43.08-2.86-.31-4.08-1.03c-2.02-1.19-3.44-3.37-3.65-5.71c-.02-.5-.03-1-.01-1.49c.18-1.9 1.12-3.72 2.58-4.96c1.66-1.44 3.98-2.13 6.15-1.72v4.02a4.23 4.23 0 0 0-2.22.71c-.77.53-1.38 1.32-1.62 2.24c-.19.63-.25 1.28-.15 1.93c.12 1.13.78 2.15 1.7 2.8c1.02.7 2.32.74 3.39.31c.9-.34 1.61-1.1 1.96-2.01c.15-.38.21-.77.21-1.17c.01-3.41.01-6.82.01-10.23z"/></svg>
+                        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02c.08 1.53.63 3.09 1.75 4.17c1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97c-.57-.26-1.1-.59-1.62-.93c-.01 2.92.01 5.84-.02 8.75c-.03 1.4-.54 2.79-1.35 3.94c-1.31 1.92-3.58 3.17-5.91 3.21c-1.43.08-2.86-.31-4.08-1.03c-2.02-1.19-3.44-3.37-3.65-5.71c-.02-.5-.03-1-.01-1.49c.18-1.9 1.12-3.72 2.58-4.96c1.66-1.44 3.98-2.13 6.15-1.72v4.02a4.23 4.23 0 0 0-2.22.71c-.77.53-1.38 1.32-1.62 2.24c-.19.63-.25 1.28-.15 1.93c.12 1.13.78 2.15 1.7 2.8c1.02.7 2.32.74 3.39.31c.9-.34 1.61-1.1 1.96-2.01c.15-.38.21-.77.21-1.17z"/></svg>
                     </div>
                     <span class="text-[10px] font-black uppercase italic text-yellow-500">TikTok</span>
                 </a>
@@ -90,7 +107,7 @@
 
                 <a href="https://www.youtube.com/@LAWEsportsOfficial" target="_blank" class="social-card glass-box p-6 rounded-xl border border-white/10 flex flex-col items-center group">
                     <div class="mb-3 text-red-600 group-hover:scale-110 transition-transform">
-                        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
                     </div>
                     <span class="text-[10px] font-black uppercase italic text-yellow-500">YouTube</span>
                 </a>
@@ -102,17 +119,9 @@
         <div class="max-w-7xl mx-auto">
             <button onclick="switchPage('home')" class="back-btn mb-8 border border-white/20 px-6 py-2 text-[10px] font-black uppercase italic transition-all">← Back to Home</button>
             <h2 class="text-4xl font-black italic mb-12 uppercase border-l-4 border-cyan-500 pl-4">Team <span class="text-cyan-400">Rosters</span></h2>
-            
-            <h3 class="text-xs font-black uppercase tracking-[0.3em] text-white/40 mb-6 italic">Creative Pro</h3>
             <div id="creative-pro-grid" class="grid grid-cols-2 md:grid-cols-6 gap-4 mb-12"></div>
-
-            <h3 class="text-xs font-black uppercase tracking-[0.3em] text-white/40 mb-6 italic">Main Creative</h3>
             <div id="main-creative-grid" class="grid grid-cols-2 md:grid-cols-6 gap-4 mb-12"></div>
-
-            <h3 class="text-xs font-black uppercase tracking-[0.3em] text-white/40 mb-6 italic text-yellow-500">Division One</h3>
             <div id="division-one-grid" class="grid grid-cols-2 md:grid-cols-6 gap-4 mb-12"></div>
-
-            <h3 class="text-xs font-black uppercase tracking-[0.3em] text-white/40 mb-6 italic text-purple-500">Academy</h3>
             <div id="academy-grid" class="grid grid-cols-2 md:grid-cols-6 gap-4"></div>
         </div>
     </section>
@@ -121,27 +130,11 @@
         <div class="max-w-7xl mx-auto">
             <button onclick="switchPage('home')" class="back-btn mb-8 border border-white/20 px-6 py-2 text-[10px] font-black uppercase italic transition-all">← Back to Home</button>
             <h2 class="text-4xl font-black italic mb-12 uppercase border-l-4 border-yellow-500 pl-4">Staff <span class="text-yellow-500">Team</span></h2>
-            
             <div class="space-y-12">
-                <div>
-                    <h3 class="text-xs font-black uppercase tracking-[0.3em] text-white/40 mb-6 italic">Leadership</h3>
-                    <div id="staff-founder" class="grid grid-cols-1 md:grid-cols-4 gap-4"></div>
-                </div>
-
-                <div>
-                    <h3 class="text-xs font-black uppercase tracking-[0.3em] text-white/40 mb-6 italic">Executive Board</h3>
-                    <div id="staff-executive" class="grid grid-cols-1 md:grid-cols-4 gap-4"></div>
-                </div>
-
-                <div>
-                    <h3 class="text-xs font-black uppercase tracking-[0.3em] text-white/40 mb-6 italic">Management & Operations</h3>
-                    <div id="staff-ops" class="grid grid-cols-1 md:grid-cols-4 gap-4"></div>
-                </div>
-
-                <div>
-                    <h3 class="text-xs font-black uppercase tracking-[0.3em] text-white/40 mb-6 italic">Staff Support</h3>
-                    <div id="staff-support" class="grid grid-cols-1 md:grid-cols-4 gap-4"></div>
-                </div>
+                <div id="staff-founder" class="grid grid-cols-1 md:grid-cols-4 gap-4"></div>
+                <div id="staff-executive" class="grid grid-cols-1 md:grid-cols-4 gap-4"></div>
+                <div id="staff-ops" class="grid grid-cols-1 md:grid-cols-4 gap-4"></div>
+                <div id="staff-support" class="grid grid-cols-1 md:grid-cols-4 gap-4"></div>
             </div>
         </div>
     </section>
@@ -158,65 +151,21 @@
         }
     }
 
-    // --- DATA ---
     const creativePro = [{ name: "Slayer", img: "slayer.webp" }];
     const mainCreative = [{ name: "Cyclip!", img: "cyclip.webp" }];
-    const divisionOne = [
-        { name: "Moshki", img: "mohski.webp" }, 
-        { name: "Omar", img: "omar.webp" },
-        { name: "Vexro", img: "vexro.webp" }, 
-        { name: "Vision", img: "vision.webp" }
-    ];
-    const academy = [
-        { name: "Cyber", img: "cyber.webp" }, { name: "Dextor", img: "dextor.webp" },
-        { name: "Deyy", img: "deyy.webp" }, { name: "EpikSpyy", img: "epik.webp" },
-        { name: "Etashk", img: "etashk.webp" }, { name: "Firedemon", img: "firedemon.webp" },
-        { name: "Frenzy", img: "frenzy.webp" }, { name: "Frst Zone", img: "frst.webp" },
-        { name: "Nix", img: "nix.webp" }, { name: "Ornery", img: "ornery.webp" }, 
-        { name: "Zilla", img: "zilla.webp" }, { name: "Ghost", img: "ghost.webp" },
-        { name: "Meem", img: "meem.webp" }, { name: "Vanish", img: "vanish.webp" },
-        { name: "Voltrux", img: "voltrux.webp" }
-    ];
+    const divisionOne = [{ name: "Moshki", img: "mohski.webp" }, { name: "Omar", img: "omar.webp" }, { name: "Vexro", img: "vexro.webp" }, { name: "Vision", img: "vision.webp" }];
+    const academy = [{ name: "Cyber", img: "cyber.webp" }, { name: "Dextor", img: "dextor.webp" }, { name: "Deyy", img: "deyy.webp" }, { name: "EpikSpyy", img: "epik.webp" }, { name: "Etashk", img: "etashk.webp" }, { name: "Firedemon", img: "firedemon.webp" }, { name: "Frenzy", img: "frenzy.webp" }, { name: "Frst Zone", img: "frst.webp" }, { name: "Nix", img: "nix.webp" }, { name: "Ornery", img: "ornery.webp" }, { name: "Zilla", img: "zilla.webp" }, { name: "Ghost", img: "ghost.webp" }, { name: "Meem", img: "meem.webp" }, { name: "Vanish", img: "vanish.webp" }, { name: "Voltrux", img: "voltrux.webp" }];
 
     const staffFounder = [{ name: "Energe", role: "Founder", img: "energe.webp" }];
-    
-    const staffExecutive = [
-        { name: "Draxy", role: "Co-Founder", img: "draxy.webp" },
-        { name: "Taseen", role: "Co-Founder", img: "taseen.webp" },
-        { name: "Hunter", role: "Co-Founder", img: "hunter.webp" },
-        { name: "C1okie", role: "Co-Founder", img: "c1okie.webp" }, 
-        { name: "Snappz", role: "Co-Founder", img: "snappz.webp" },
-        { name: "Fightwar", role: "Co-Founder", img: "fightwar.webp" },
-        { name: "Cheezy", role: "Co-Founder", img: "chezy.webp" }
-    ];
-
-    const staffOps = [
-        { name: "Snappz", role: "Chief of Executives", img: "snappz.webp" },
-        { name: "7y", role: "Management", img: "7y.webp" },
-        { name: "Dxmolsher", role:"Chief Of Operations", img: "dxm.webp"},
-        { name: "Blicky", role:"Over-seer", img: "blicky.webp" },
-        { name: "Moon", role:"Round-Table", img: "moon.webp" },
-        { name: "Kxalid", role: "Round-Table", img: "khalid.webp" },
-        { name: "Prix", role: "Round-Table", img: "prix.webp" },
-        { name: "Cyclip", role: "Chief", img: "cyclip.webp" } ,
-        { name: "Vexro", role: "Chief Admin", img: "vexro.webp" }
-    ];
-
-    const staffSupport = [
-        { name: "Snappz", role: "Chief Of Executive", img: "snappz.webp" },
-        { name: "Stofn", role: "Moderator", img: "stofn.webp" },
-        { name: "Ryan", role: "Moderator", img: "ryan.webp" }
-    ];
+    const staffExecutive = [{ name: "Draxy", role: "Co-Founder", img: "draxy.webp" }, { name: "Taseen", role: "Co-Founder", img: "taseen.webp" }, { name: "Hunter", role: "Co-Founder", img: "hunter.webp" }, { name: "C1okie", role: "Co-Founder", img: "c1okie.webp" }, { name: "Snappz", role: "Co-Founder", img: "snappz.webp" }, { name: "Fightwar", role: "Co-Founder", img: "fightwar.webp" }, { name: "Cheezy", role: "Co-Founder", img: "chezy.webp" }];
+    const staffOps = [{ name: "Snappz", role: "Chief of Executives", img: "snappz.webp" }, { name: "7y", role: "Management", img: "7y.webp" }, { name: "Dxmolsher", role:"Chief Of Operations", img: "dxm.webp"}, { name: "Blicky", role:"Over-seer", img: "blicky.webp" }, { name: "Moon", role:"Round-Table", img: "moon.webp" }, { name: "Kxalid", role: "Round-Table", img: "khalid.webp" }, { name: "Prix", role: "Round-Table", img: "prix.webp" }, { name: "Cyclip", role: "Chief", img: "cyclip.webp" } , { name: "Vexro", role: "Chief Admin", img: "vexro.webp" }];
+    const staffSupport = [{ name: "Snappz", role: "Chief Of Executive", img: "snappz.webp" }, { name: "Stofn", role: "Moderator", img: "stofn.webp" }, { name: "Ryan", role: "Moderator", img: "ryan.webp" }];
 
     function populateRoster(gridId, players) {
         const grid = document.getElementById(gridId);
         if(!grid) return;
         players.forEach(p => {
-            grid.innerHTML += `
-                <div class="glass-box p-4 rounded-lg text-center">
-                    <img src="${p.img}" class="w-16 h-16 rounded-full mx-auto mb-2 object-cover border border-white/10" onerror="this.src='IMG_1343.jpeg'">
-                    <p class="text-[9px] font-black uppercase italic">${p.name}</p>
-                </div>`;
+            grid.innerHTML += `<div class="glass-box p-4 rounded-lg text-center"><img src="${p.img}" class="w-16 h-16 rounded-full mx-auto mb-2 object-cover border border-white/10" onerror="this.src='IMG_1343.jpeg'"><p class="text-[9px] font-black uppercase italic">${p.name}</p></div>`;
         });
     }
 
@@ -224,23 +173,14 @@
         const grid = document.getElementById(gridId);
         if(!grid) return;
         staff.forEach(s => {
-            grid.innerHTML += `
-                <div class="staff-card glass-box p-4 rounded-xl border-l-2 border-yellow-500/50 flex items-center space-x-4">
-                    <img src="${s.img}" class="w-12 h-12 rounded-lg object-cover" onerror="this.src='IMG_1343.jpeg'">
-                    <div>
-                        <h4 class="text-sm font-black uppercase italic leading-tight">${s.name}</h4>
-                        <p class="text-yellow-500 text-[8px] font-bold uppercase tracking-widest">${s.role}</p>
-                    </div>
-                </div>`;
+            grid.innerHTML += `<div class="staff-card glass-box p-4 rounded-xl border-l-2 border-yellow-500/50 flex items-center space-x-4"><img src="${s.img}" class="w-12 h-12 rounded-lg object-cover" onerror="this.src='IMG_1343.jpeg'"><div><h4 class="text-sm font-black uppercase italic leading-tight">${s.name}</h4><p class="text-yellow-500 text-[8px] font-bold uppercase tracking-widest">${s.role}</p></div></div>`;
         });
     }
 
-    // Initialize
     populateRoster('creative-pro-grid', creativePro);
     populateRoster('main-creative-grid', mainCreative);
     populateRoster('division-one-grid', divisionOne);
     populateRoster('academy-grid', academy);
-
     populateStaff('staff-founder', staffFounder);
     populateStaff('staff-executive', staffExecutive);
     populateStaff('staff-ops', staffOps);
